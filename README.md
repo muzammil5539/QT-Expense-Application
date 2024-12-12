@@ -257,9 +257,9 @@ This project is released under the **MIT License**. You are free to use, modify,
 
 For any questions, suggestions, or collaboration requests:
 
-- **Developer**: _Your Name_
-- **Email**: *your.email@example.com*
-- **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/yourprofile)
-- **GitHub**: [Your GitHub Profile](https://github.com/yourusername)
+- **Developer**:Muzammil Nawaz Khan
+- **Email**: *mnk.7muzammil86@gmail.com*
+- **LinkedIn**: [Muzammil Nawaz Khan](https://www.linkedin.com/in/mnk539)
+- **GitHub**: [Your GitHub Profile](https://github.com/muzammil5539)
 
 Feel free to reach out!

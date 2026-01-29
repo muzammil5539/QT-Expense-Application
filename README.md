@@ -1,5 +1,20 @@
 # Budget Tracker Application
 
+<div align="center">
+
+![Qt](https://img.shields.io/badge/Qt-6.8.1-41CD52?style=for-the-badge&logo=qt&logoColor=white)
+![C++](https://img.shields.io/badge/C++-11-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
+
+**A powerful and intuitive desktop application for managing personal finances**
+
+[Features](#features) • [Installation](#setup-and-installation) • [Usage](#usage-guide) • [Documentation](#documentation) • [Contributing](#contributing)
+
+</div>
+
+---
+
 ## Introduction
 
 The **Budget Tracker Application** is a desktop software developed using the Qt framework in C++. It aims to provide users with an intuitive and efficient way to manage their personal finances. The application allows users to track their incomes and expenses, categorize transactions, view financial summaries, and visualize their financial data through charts.
@@ -10,256 +25,426 @@ The **Budget Tracker Application** is a desktop software developed using the Qt 
 
 - [Introduction](#introduction)
 - [Features](#features)
-  - [User Authentication](#user-authentication)
-  - [Transaction Management](#transaction-management)
-  - [Financial Overview](#financial-overview)
-  - [Category Filtering](#category-filtering)
-  - [Data Visualization](#data-visualization)
+- [Screenshots](#screenshots)
+- [Project Structure](#project-structure)
 - [Architecture](#architecture)
-  - [Project Structure](#project-structure)
-  - [Class Descriptions](#class-descriptions)
-- [Database Schema](#database-schema)
-- [User Interface](#user-interface)
-  - [Login Window](#login-window)
-  - [Main Window](#main-window)
 - [Setup and Installation](#setup-and-installation)
-  - [Prerequisites](#prerequisites)
-  - [Building the Project](#building-the-project)
 - [Usage Guide](#usage-guide)
-  - [Logging In and Registration](#logging-in-and-registration)
-  - [Adding Transactions](#adding-transactions)
-  - [Viewing Transactions](#viewing-transactions)
-  - [Visualizing Data](#visualizing-data)
+- [Documentation](#documentation)
 - [Future Enhancements](#future-enhancements)
 - [Contributing](#contributing)
 - [License](#license)
-- [Contact Information](#contact-information)
+- [Contact](#contact)
 
 ---
 
 ## Features
 
-### User Authentication
+### 🔐 User Authentication
+- Secure login system with username and password
+- Quick registration for new users
+- Individual user accounts with unique identifiers
+- Session management for personalized data
 
-- Secure login system with username and password.
-- Registration functionality for new users.
-- Each user has a unique identifier to manage their personal data.
+### 💰 Transaction Management
+- **Add Income**: Record earnings with categories and details
+- **Add Expense**: Track spending across multiple categories
+- Custom categories and subcategories for detailed organization
+- Date tracking for all transactions
+- Automatic balance calculation
 
-### Transaction Management
+### 📊 Financial Overview
+- Comprehensive balance sheet displaying all transactions
+- Real-time balance updates
+- Chronological transaction history
+- Detailed information for each entry (date, category, amount, balance)
 
-- Add **Income** and **Expense** transactions with details like amount, category, subcategory, and date.
-- Transactions are categorized to help users track spending habits.
-- Supports custom categories and subcategories.
+### 🔍 Category Filtering
+- Filter transactions by specific categories
+- View totals for individual categories
+- Analyze spending patterns by category
+- Quick reset to view all transactions
 
-### Financial Overview
+### 📈 Data Visualization
+- Interactive line charts powered by Qt Charts
+- Visual representation of financial trends
+- Three data series:
+  - 💙 **Balance**: Track your overall financial position
+  - 💚 **Income**: Monitor earnings over time
+  - ❤️ **Expenses**: Visualize spending patterns
+- Hover over data points for detailed information
+- Automatic chart updates with new transactions
 
-- Displays all transactions in a balance sheet format.
-- Shows real-time calculation of current balance.
-- Provides detailed information for each transaction.
+---
 
-### Category Filtering
+## Screenshots
 
-- View transactions by specific categories.
-- Helps in analyzing expenses or incomes in particular areas.
-- Displays total amounts for selected categories.
+> **Note**: Screenshots coming soon! The application features a clean, modern interface built with Qt Widgets.
 
-### Data Visualization
+### Login Window
+- Clean and simple authentication interface
+- Easy registration for new users
 
-- Integrates Qt Charts to display financial data graphically.
-- Line charts show income, expenses, and balance over time.
-- Enhances understanding of financial trends.
+### Main Window
+- Intuitive layout with clear action buttons
+- Comprehensive transaction table
+- Interactive financial charts
+- Real-time balance display
+
+---
+
+## Project Structure
+
+```
+QT-Expense-Application/
+├── src/                          # Source files (.cpp)
+│   ├── main.cpp                 # Application entry point
+│   ├── login.cpp                # Login and registration logic
+│   ├── project.cpp              # Main application logic
+│   └── stdafx.cpp               # Precompiled headers
+├── include/                      # Header files (.h)
+│   ├── login.h                  # Login class declaration
+│   ├── project.h                # Main window class
+│   ├── transaction.h            # Transaction base classes
+│   ├── transaction_collection.h # Transaction container
+│   └── stdafx.h                 # Standard includes
+├── resources/                    # Resource files
+│   └── project.qrc              # Qt resource collection
+├── build/                        # Build configuration
+│   ├── Project.vcxproj          # Visual Studio project
+│   └── Project.vcxproj.filters  # VS filters
+├── docs/                         # Documentation
+│   ├── ARCHITECTURE.md          # Technical architecture
+│   └── SETUP.md                 # Detailed setup guide
+├── README.md                     # This file
+├── CONTRIBUTING.md              # Contribution guidelines
+├── CODE_OF_CONDUCT.md           # Code of conduct
+├── CHANGELOG.md                 # Version history
+├── LICENSE                       # MIT License
+└── .gitignore                   # Git ignore rules
+```
 
 ---
 
 ## Architecture
 
-### Project Structure
+### Project Architecture Overview
 
-The application is organized into several key components:
+The application follows a modular, object-oriented design:
 
-- **Main Application**: Initializes the application and handles user sessions.
-- **Login Module**: Manages user authentication.
-- **Transaction Module**: Handles transaction data and logic.
-- **Database Module**: Interacts with the SQLite database.
-- **User Interface**: Constructs the GUI using Qt Widgets.
+- **Main Application**: Entry point that initializes the application and manages user sessions
+- **Login Module**: Handles user authentication and registration
+- **Transaction Module**: Core business logic for financial transactions
+- **Database Module**: SQLite integration for data persistence
+- **User Interface**: Qt Widgets-based GUI components
+- **Visualization**: Qt Charts integration for data representation
 
-### Class Descriptions
+### Key Classes
 
-- **`Project`**: Inherits from `QMainWindow`. It is the core class that ties together the UI and backend logic.
-- **`Transaction`**: An abstract base class representing a financial transaction.
-  - **`Income`**: Derived from `Transaction`, represents income entries.
-  - **`Expense`**: Derived from `Transaction`, represents expense entries.
-- **`TransactionCollection`**: Template class managing collections of transactions.
-- **`Login`**: Manages the login and registration dialogs and processes.
+**`Project`**
+- Inherits from `QMainWindow`
+- Core class integrating UI and backend logic
+- Manages the main application window and user interactions
+
+**`Transaction`** (Abstract Base Class)
+- Represents a financial transaction
+- Defines common interface for all transaction types
+
+**`Income` / `Expense`**
+- Derived from `Transaction`
+- Represent positive and negative cash flows respectively
+
+**`TransactionCollection<T>`**
+- Template class for managing transaction collections
+- Provides filtering and aggregation functionality
+
+**`Login`**
+- Manages authentication dialogs
+- Handles user login and registration
+
+For detailed architecture information, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ---
 
 ## Database Schema
 
-The application uses SQLite for data persistence with the following tables:
+The application uses **SQLite** for lightweight, embedded data persistence.
 
 ### `users` Table
 
-- **`id`**: Primary key (INTEGER).
-- **`username`**: Unique username (TEXT).
-- **`password`**: User's password (TEXT).
+| Column   | Type    | Description                    |
+|----------|---------|--------------------------------|
+| id       | INTEGER | Primary key (auto-increment)   |
+| username | TEXT    | Unique username for login      |
+| password | TEXT    | User password                  |
 
 ### `transactions` Table
 
-- **`id`**: Primary key (INTEGER).
-- **`user_id`**: Foreign key referencing `users.id` (INTEGER).
-- **`date`**: Date of transaction (TEXT).
-- **`category`**: Transaction category (TEXT).
-- **`subcategory`**: Transaction subcategory (TEXT).
-- **`amount`**: Transaction amount (REAL).
-- **`balance`**: User's balance after transaction (REAL).
-
----
-
-## User Interface
-
-### Login Window
-
-- **Username and Password Fields**: Inputs for user credentials.
-- **Login Button**: Validates credentials and logs in the user.
-- **Register Button**: Creates a new user account.
-
-### Main Window
-
-- **Transaction Table**: Displays a list of transactions with details.
-- **Buttons**:
-  - **Add Income**: Opens dialog to add an income transaction.
-  - **Add Expense**: Opens dialog to add an expense transaction.
-  - **View Category**: Filters transactions by category.
-  - **Reset View**: Resets filters to show all transactions.
-- **Total Label**: Shows the current balance or category totals.
-- **Chart Area**: Displays financial data in a line chart.
+| Column      | Type    | Description                           |
+|-------------|---------|---------------------------------------|
+| id          | INTEGER | Primary key (auto-increment)          |
+| user_id     | INTEGER | Foreign key to users.id               |
+| date        | TEXT    | Transaction date (ISO format)         |
+| category    | TEXT    | Transaction category                  |
+| subcategory | TEXT    | Transaction subcategory (optional)    |
+| amount      | REAL    | Transaction amount (+/-)              |
+| balance     | REAL    | Running balance after transaction     |
 
 ---
 
 ## Setup and Installation
 
-### Prerequisites
+### Quick Start
 
-- **Qt Framework**: Version 5 or later with Widgets, SQL, and Charts modules.
-- **C++ Compiler**: Compatible with C++11 standard or higher.
-- **SQLite**: Integrated with Qt SQL module.
+1. **Prerequisites**
+   - Qt Framework 6.x (6.8.1 recommended) or Qt 5.15+
+   - C++ Compiler (MSVC, GCC, or Clang)
+   - SQLite (included with Qt SQL module)
 
-### Building the Project
+2. **Clone the Repository**
+   ```bash
+   git clone https://github.com/muzammil5539/QT-Expense-Application.git
+   cd QT-Expense-Application
+   ```
 
-1. **Clone the Repository**: Download the project files to your local machine.
+3. **Build the Project**
+   
+   **Using Visual Studio:**
+   - Open `build/Project.vcxproj`
+   - Configure Qt paths in Qt VS Tools
+   - Build → Build Solution
 
-2. **Open the Project**: Use Qt Creator or another IDE that supports Qt projects.
+   **Using Qt Creator:**
+   - Open `build/Project.vcxproj` or create a `.pro` file
+   - Configure the kit
+   - Build → Build All
 
-3. **Configure Build Settings**:
+4. **Run**
+   - Execute the compiled binary
+   - Register a new user
+   - Start tracking your finances!
 
-   - Ensure all necessary Qt modules are included.
-   - Set the correct compiler and Qt version.
+For detailed installation instructions, see [docs/SETUP.md](docs/SETUP.md).
 
-4. **Build the Project**:
+### System Requirements
 
-   - Run the build process from your IDE.
-   - Resolve any dependencies or errors if they arise.
-
-5. **Run the Application**:
-   - Execute the compiled binary.
-   - The Login window should appear upon successful build.
+- **OS**: Windows 10/11, Linux (Ubuntu 20.04+), or macOS 10.15+
+- **RAM**: 4 GB minimum (8 GB recommended)
+- **Disk Space**: ~100 MB for application
+- **Display**: 1024x768 minimum resolution
 
 ---
 
 ## Usage Guide
 
-### Logging In and Registration
+### Getting Started
 
-- **New Users**:
-  - Enter a unique username and password.
-  - Click "Register" to create a new account.
-- **Existing Users**:
-  - Enter your username and password.
-  - Click "Login" to access your account.
-- **Error Handling**:
-  - The application will prompt you if credentials are incorrect or if the username already exists.
+1. **Launch the Application**
+   - Run the executable
+   - The login window will appear
 
-### Adding Transactions
+2. **Create an Account**
+   - Enter a unique username
+   - Set a secure password
+   - Click **Register**
 
-- **Add Income**:
-  - Click the "Add Income" button.
-  - Select a category (e.g., Salary, Investment).
-  - Enter a subcategory and amount.
-  - The transaction is saved, and the balance updates.
-- **Add Expense**:
-  - Click the "Add Expense" button.
-  - Select a category (e.g., Housing, Food).
-  - Enter a subcategory and amount.
-  - The transaction is saved with a negative amount, and the balance updates.
+3. **Login**
+   - Enter your credentials
+   - Click **Login** to access your dashboard
+
+### Managing Transactions
+
+#### Adding Income
+
+1. Click the **"Add Income"** button
+2. Select a category from the dropdown:
+   - Salary
+   - Investment
+   - Business
+   - Freelance
+   - Other
+3. Enter a subcategory (optional, e.g., "Monthly Salary")
+4. Enter the amount
+5. Click **OK** to save
+
+The transaction is immediately added to your balance sheet and chart.
+
+#### Adding Expenses
+
+1. Click the **"Add Expense"** button
+2. Choose a category:
+   - Housing (rent, mortgage, utilities)
+   - Food (groceries, dining out)
+   - Transportation (gas, public transit)
+   - Healthcare
+   - Entertainment
+   - Other
+3. Enter a subcategory for more detail
+4. Enter the amount
+5. Click **OK**
+
+Your balance updates automatically, and the expense appears in the table.
 
 ### Viewing Transactions
 
-- **Balance Sheet View**:
-  - Displays all transactions in order.
-  - Columns include Date, Category, Subcategory, Amount, and Balance.
-- **Category View**:
-  - Click "View Category" and select a category.
-  - Shows transactions only from that category.
-  - Displays the total amount for the selected category.
-- **Reset View**:
-  - Click "Reset View" to return to the Balance Sheet view.
+**Balance Sheet View** (Default)
+- Shows all transactions chronologically
+- Displays running balance after each transaction
+- Columns: Date | Category | Subcategory | Amount | Balance
 
-### Visualizing Data
+**Category View**
+- Click **"View Category"**
+- Select a category from the list
+- See only transactions for that category
+- View total amount for the category
 
-- The application displays a chart at the bottom of the main window.
-- **Chart Features**:
-  - **Balance Series**: Blue line showing the balance over time.
-  - **Income Series**: Green line for income transactions.
-  - **Expense Series**: Red line for expense transactions.
-- **Interactivity**:
-  - Hover over data points to see exact values.
-  - Chart automatically updates when new transactions are added.
+**Reset View**
+- Click **"Reset View"** to return to Balance Sheet
+- Shows all transactions again
+
+### Understanding the Chart
+
+The chart at the bottom displays three lines:
+
+- **Blue Line (Balance)**: Your current financial position over time
+- **Green Line (Income)**: Income transactions plotted by date
+- **Red Line (Expenses)**: Expense transactions plotted by date
+
+Hover over any point to see exact values and dates.
+
+---
+
+## Documentation
+
+Comprehensive documentation is available in the `docs/` directory:
+
+- **[ARCHITECTURE.md](docs/ARCHITECTURE.md)**: Detailed technical architecture, design patterns, and code structure
+- **[SETUP.md](docs/SETUP.md)**: Complete setup and installation guide for all platforms
+- **[CONTRIBUTING.md](CONTRIBUTING.md)**: Guidelines for contributing to the project
+- **[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)**: Community standards and behavior expectations
+- **[CHANGELOG.md](CHANGELOG.md)**: Version history and release notes
 
 ---
 
 ## Future Enhancements
 
-- **Password Encryption**: Implement hashing to securely store passwords.
-- **Transaction Editing**: Allow users to modify or delete transactions.
-- **Advanced Filtering**: Enable filtering by date ranges or subcategories.
-- **Reporting**: Generate and export financial reports.
-- **Mobile Version**: Develop a mobile app using Qt's cross-platform capabilities.
-- **Synchronization**: Sync data across devices using cloud services.
-- **Multi-Currency Support**: Handle transactions in different currencies.
-- **Budgeting Tools**: Set budgets for categories and track adherence.
+Planned features and improvements:
+
+### Security & Authentication
+- 🔐 **Password Encryption**: Implement bcrypt/Argon2 for secure password storage
+- 🔑 **Two-Factor Authentication**: Add 2FA for enhanced security
+- 🛡️ **Database Encryption**: Encrypt SQLite database file
+
+### Features
+- ✏️ **Transaction Editing**: Modify or delete existing transactions
+- 📅 **Date Range Filtering**: Filter transactions by custom date ranges
+- 📤 **Export Functionality**: Export data to CSV, Excel, or PDF
+- 📊 **Advanced Reports**: Generate monthly/yearly financial reports
+- 💵 **Multi-Currency Support**: Handle transactions in different currencies
+- 🎯 **Budget Planning**: Set budgets for categories and track adherence
+- 📱 **Recurring Transactions**: Set up automatic recurring entries
+- 🏷️ **Tags and Notes**: Add custom tags and notes to transactions
+
+### User Experience
+- 🌙 **Dark Mode**: Add dark theme option
+- 🌍 **Internationalization**: Support for multiple languages
+- 📲 **Mobile Version**: Develop mobile app using Qt for Android/iOS
+- ☁️ **Cloud Sync**: Synchronize data across multiple devices
+- 🔔 **Notifications**: Reminders for recurring transactions or budget limits
+
+### Technical Improvements
+- ⚡ **Performance**: Optimize for large datasets with lazy loading
+- 🧪 **Testing**: Implement comprehensive unit and integration tests
+- 📊 **Analytics**: Add advanced analytics dashboard
+- 🔌 **API**: Create REST API for third-party integrations
 
 ---
 
 ## Contributing
 
-If you're interested in contributing to the project:
+Contributions are welcome and appreciated! Here's how you can help:
 
-1. **Fork the Repository**: Create your own copy on GitHub.
+1. **🍴 Fork the Repository**
+   - Create your own fork on GitHub
 
-2. **Create a Branch**: Work on your feature or bugfix in a new branch.
+2. **🌿 Create a Feature Branch**
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
 
-3. **Commit Your Changes**: Write clear and descriptive commit messages.
+3. **✍️ Make Your Changes**
+   - Follow the coding style guidelines
+   - Write clear, commented code
+   - Update documentation as needed
 
-4. **Push to GitHub**: Push your branch to your forked repository.
+4. **✅ Test Your Changes**
+   - Ensure the application builds successfully
+   - Test all affected functionality
 
-5. **Submit a Pull Request**: Explain your changes and submit a PR to the original repository.
+5. **💾 Commit Your Changes**
+   ```bash
+   git commit -m "Add some AmazingFeature"
+   ```
+
+6. **📤 Push to Your Fork**
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+
+7. **🔁 Open a Pull Request**
+   - Provide a clear description of your changes
+   - Reference any related issues
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines, coding standards, and the code of conduct.
 
 ---
 
 ## License
 
-This project is released under the **MIT License**. You are free to use, modify, and distribute this software as per the license terms.
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+```
+MIT License - Copyright (c) 2024 Muzammil Nawaz Khan
+```
+
+You are free to:
+- ✅ Use commercially
+- ✅ Modify
+- ✅ Distribute
+- ✅ Sublicense
+- ✅ Private use
 
 ---
 
-## Contact Information
+## Contact
 
-For any questions, suggestions, or collaboration requests:
+**Muzammil Nawaz Khan**
 
-- **Developer**:Muzammil Nawaz Khan
-- **Email**: *mnk.7muzammil86@gmail.com*
-- **LinkedIn**: [Muzammil Nawaz Khan](https://www.linkedin.com/in/mnk539)
-- **GitHub**: [Your GitHub Profile](https://github.com/muzammil5539)
+- 📧 Email: [mnk.7muzammil86@gmail.com](mailto:mnk.7muzammil86@gmail.com)
+- 💼 LinkedIn: [Muzammil Nawaz Khan](https://www.linkedin.com/in/mnk539)
+- 🐙 GitHub: [@muzammil5539](https://github.com/muzammil5539)
 
-Feel free to reach out!
+### Support
+
+- 🐛 Found a bug? [Open an issue](https://github.com/muzammil5539/QT-Expense-Application/issues)
+- 💡 Have a feature request? [Start a discussion](https://github.com/muzammil5539/QT-Expense-Application/discussions)
+- 📧 Need help? Email me or open an issue
+
+---
+
+## Acknowledgments
+
+- Built with [Qt Framework](https://www.qt.io/)
+- Database powered by [SQLite](https://www.sqlite.org/)
+- Charts by [Qt Charts](https://doc.qt.io/qt-6/qtcharts-index.html)
+- Inspired by the need for simple, effective personal finance management
+
+---
+
+<div align="center">
+
+**⭐ Star this repository if you find it helpful!**
+
+Made with ❤️ by [Muzammil Nawaz Khan](https://github.com/muzammil5539)
+
+</div>

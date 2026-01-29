@@ -1,5 +1,5 @@
 // Generate the precompiled header
-#include "stdafx.h"
+#include "../include/stdafx.h"
 
 // Ensure PCH is at global scope
 #if defined(_MSC_VER)

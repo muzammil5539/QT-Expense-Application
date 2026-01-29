@@ -124,21 +124,32 @@ public:
  * @brief Represents an expense transaction (negative cash flow)
  * 
  * Expense transactions represent money going out, such as bills,
- * purchases, or payments. The amount is automatically stored as a
- * negative value.
+ * purchases, or payments. The amount passed to the constructor
+ * should be a positive value; it will be automatically negated
+ * and stored as negative internally.
+ * 
+ * @note Always pass positive amounts to the Expense constructor.
+ *       The class handles the negation automatically.
  */
 class Expense : public Transaction {
 public:
     /**
      * @brief Constructs an Expense transaction
-     * @param amount Transaction amount (automatically negated for storage)
+     * @param amount Transaction amount as a POSITIVE value (will be negated)
      * @param category Main category (e.g., "Housing", "Food")
      * @param subcategory Optional subcategory for details
      * @param date Date of the transaction
+     * 
+     * @example
+     * @code
+     * // Correct usage - pass positive amount
+     * Expense rent(1000.0, "Housing", "Monthly Rent", QDate::currentDate());
+     * // rent.getAmount() returns -1000.0
+     * @endcode
      */
     Expense(double amount, const QString& category,
            const QString& subcategory, const QDate& date) {
-        this->amount = -amount;  // Store as negative
+        this->amount = -amount;  // Store as negative (automatic negation)
         this->category = category;
         this->subcategory = subcategory;
         this->date = date;

@@ -5,8 +5,6 @@
 #include <QDialog>
 #include <QSqlQuery>
 #include <QMessageBox>
-#include "ui_login.h"  // Include the header file for Ui_Login
-#include <QDialog>
 #include <QScopedPointer>
 #include "ui_login.h"
 

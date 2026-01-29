@@ -435,11 +435,13 @@ void Project::onAddExpense()
         "Amount:", 0, 0, 1000000, 2, &ok);
     if (!ok || amount == 0) return;
 
-    amount = -amount;
-    QDate date = QDate::currentDate(); // Define the date variable
+    // Pass positive amount to Expense constructor, which will negate it internally
+    QDate date = QDate::currentDate();
     Expense expense(amount, category, subcategory, date);
     transactions.add(expense);
-    currentBalance += amount;
+    
+    // Update balance with the negative amount from the expense
+    currentBalance += expense.getAmount();
 
     QSqlQuery query;
     query.prepare("INSERT INTO transactions (user_id, date, category, subcategory, amount, balance) "

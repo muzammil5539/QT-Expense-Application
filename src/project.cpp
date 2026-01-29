@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "project.h"
+#include "../include/stdafx.h"
+#include "../include/project.h"
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QDateTime>

@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "login.h"
+#include "../include/stdafx.h"
+#include "../include/login.h"
 #include "ui_login.h"  // Include the header file for Ui_Login
 
 // Constructor for the Login class

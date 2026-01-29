@@ -52,3 +52,24 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.vcxproj.user
+*.sln.docstates
+[Dd]ebug/
+[Rr]elease/
+x64/
+[Bb]in/
+[Oo]bj/
+*.log
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+budget_tracker.db

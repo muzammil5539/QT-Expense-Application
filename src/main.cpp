@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "project.h"
-#include "login.h"
+#include "../include/stdafx.h"
+#include "../include/project.h"
+#include "../include/login.h"
 #include <QDialog>
 #include <QApplication>
 #include <QtCharts/QChart>
